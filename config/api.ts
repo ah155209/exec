@@ -186,7 +186,7 @@ export const apiUtils = {
   /**
    * Validate required fields
    */
-  validateRequired: (fields: Record<string, any>): { isValid: boolean; missingFields: string[] } => {
+  validateRequired: (fields: Record<string, unknown>): { isValid: boolean; missingFields: string[] } => {
     const missingFields: string[] = [];
     
     for (const [key, value] of Object.entries(fields)) {
