@@ -108,11 +108,14 @@
 //                   <div className="flex items-center gap-4">
 //                     {testimonial.image ? (
 //                       <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800">
-//                         <img
-//                           src={testimonial.image}
-//                           alt={testimonial.name}
-//                           className="w-full h-full object-cover"
-//                         />
+//                        < className="relative w-16 h-16">
+//   <Image
+//     src={testimonial.image}
+//     alt={testimonial.name}
+//     fill
+//     className="rounded-full object-cover"
+//     sizes="64px"
+//   />
 //                       </div>
 //                     ) : (
 //                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold">
@@ -138,4 +141,3 @@
 //     </section>
 //   );
 // }
-
