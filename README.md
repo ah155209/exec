@@ -197,10 +197,26 @@ vercel
 ### Environment Variables
 
 **Required:**
-- `MONGODB_URI` - Your MongoDB connection string
+- `MONGODB_URI` - Your MongoDB connection string (for testimonials)
+- `RESEND_API_KEY` - Resend API key (for contact form emails)
+
+**Optional (for Contact Section):**
+- `CONTACT_EMAIL` or `NEXT_PUBLIC_CONTACT_EMAIL` - Your email address displayed in contact section
+- `NEXT_PUBLIC_GITHUB_URL` - Your GitHub profile URL (e.g., https://github.com/username)
+- `NEXT_PUBLIC_LINKEDIN_URL` - Your LinkedIn profile URL (e.g., https://linkedin.com/in/username)
+
+**Note:** Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser and can be used in client components.
 
 Add them in:
-- Local: Create `.env.local` file (see `.env.local.example`)
+- Local: Create `.env.local` file:
+  ```env
+  MONGODB_URI=your_mongodb_connection_string_here
+  RESEND_API_KEY=your_resend_api_key_here
+  CONTACT_EMAIL=your.email@example.com
+  NEXT_PUBLIC_CONTACT_EMAIL=your.email@example.com
+  NEXT_PUBLIC_GITHUB_URL=https://github.com/yourusername
+  NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/yourusername
+  ```
 - Vercel: Add in Project Settings → Environment Variables
 
 **Getting MongoDB URI:**
@@ -209,6 +225,13 @@ Add them in:
 3. Create a database user
 4. Whitelist your IP (or use 0.0.0.0/0 for development)
 5. Get connection string from "Connect" → "Connect your application"
+
+**Getting Resend API Key (Free - 3,000 emails/month):**
+1. Sign up for free at [Resend](https://resend.com)
+2. Go to API Keys section
+3. Create a new API key
+4. Copy the API key and add it to `.env.local` as `RESEND_API_KEY`
+5. Add your email address as `CONTACT_EMAIL` (where you want to receive contact form submissions)
 
 ## Build for Production
 

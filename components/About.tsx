@@ -2,6 +2,7 @@
 
 import AnimatedSection from './ui/AnimatedSection';
 import { motion } from 'framer-motion';
+import { aboutData } from '@/config/portfolio';
 
 interface AboutProps {
   title?: string;
@@ -11,14 +12,10 @@ interface AboutProps {
 }
 
 export default function About({
-  title = "About Me",
-  paragraphs = [
-    "I'm a passionate full-stack developer with a love for creating exceptional digital experiences. I specialize in building modern web applications that are both beautiful and functional.",
-    "With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code and thoughtful design. I'm always eager to learn new technologies and take on challenging projects.",
-    "When I'm not coding, you can find me exploring new frameworks, contributing to open-source projects, or sharing knowledge with the developer community.",
-  ],
-  experienceYears = "2+",
-  experienceLabel = "Years of Experience",
+  title = aboutData.title,
+  paragraphs = aboutData.paragraphs,
+  experienceYears = aboutData.experienceYears,
+  experienceLabel = aboutData.experienceLabel,
 }: AboutProps) {
   return (
     <section

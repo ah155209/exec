@@ -103,7 +103,7 @@ export default function Testimonials() {
                     {renderStars(testimonial.rating)}
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
-                    "{testimonial.message}"
+                    &quot;{testimonial.message}&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     {testimonial.image ? (

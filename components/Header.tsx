@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { navLinks, siteMetadata } from '@/config/portfolio';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,16 +15,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#calendar', label: 'Calendar' },
-    { href: '#contact', label: 'Contact' },
-  ];
 
   return (
     <header
@@ -39,7 +30,7 @@ export default function Header() {
             href="#home"
             className="text-2xl font-bold text-black dark:text-white hover:opacity-80 transition-opacity"
           >
-            Portfolio
+            {siteMetadata.name}
           </Link>
 
           {/* Desktop Navigation */}
