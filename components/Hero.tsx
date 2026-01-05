@@ -2,14 +2,16 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
+import AmeerImage from '../public/ameer hamza.png';
+import { heroData } from '@/config/portfolio';
 
 interface HeroProps {
   name?: string;
   title?: string;
   description?: string;
   location?: string;
-  image?: string;
+  image?: string | StaticImageData;
   imageAlt?: string;
   primaryButtonText?: string;
   primaryButtonLink?: string;
@@ -18,16 +20,16 @@ interface HeroProps {
 }
 
 export default function Hero({
-  name = "Ameer Hamza Subhani",
-  title = "Full Stack Developer",
-  description = "I build beautiful, functional, and user-friendly web applications with modern technologies",
-  location,
-  image,
+  name = heroData.name,
+  title = heroData.title,
+  description = heroData.description,
+  location = heroData.location,
+  image = AmeerImage,
   imageAlt = "Profile picture",
-  primaryButtonText = "View My Work",
-  primaryButtonLink = "#projects",
-  secondaryButtonText = "Get In Touch",
-  secondaryButtonLink = "#contact",
+  primaryButtonText = heroData.primaryButtonText,
+  primaryButtonLink = heroData.primaryButtonLink,
+  secondaryButtonText = heroData.secondaryButtonText,
+  secondaryButtonLink = heroData.secondaryButtonLink,
 }: HeroProps) {
   return (
     <section
@@ -126,7 +128,7 @@ export default function Hero({
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex justify-center md:justify-end"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
+              <div className="relative w-64 h-80 md:w-80 md:h-96 rounded-xl overflow-hidden shadow-2xl">
                 <Image
                   src={image}
                   alt={imageAlt}

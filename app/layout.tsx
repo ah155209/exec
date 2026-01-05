@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { siteMetadata } from "@/config/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,13 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ameer Hamza Subhani - Full Stack Developer Portfolio",
-  description: "Portfolio website of Ameer Hamza Subhani - Full Stack Developer specializing in modern web applications",
-  keywords: ["portfolio", "full stack developer", "web developer", "next.js", "react"],
-  authors: [{ name: "Ameer Hamza Subhani" }],
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  keywords: siteMetadata.keywords,
+  authors: [{ name: siteMetadata.name }],
   openGraph: {
-    title: "Ameer Hamza Subhani - Full Stack Developer",
-    description: "Portfolio website showcasing projects and skills",
+    title: `${siteMetadata.name} - Full Stack Developer`,
+    description: siteMetadata.description,
     type: "website",
   },
 };

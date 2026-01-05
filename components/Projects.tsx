@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import AnimatedSection from './ui/AnimatedSection';
 import { motion } from 'framer-motion';
+import { projectsData } from '@/config/portfolio';
 
 export interface Project {
   title: string;
@@ -18,36 +19,9 @@ interface ProjectsProps {
   projects?: Project[];
 }
 
-const defaultProjects: Project[] = [
-  {
-    title: 'E-Commerce Platform',
-    description:
-      'A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard.',
-    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Stripe'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    title: 'Task Management App',
-    description:
-      'A collaborative task management application with real-time updates and team collaboration features.',
-    technologies: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    title: 'Portfolio Website',
-    description:
-      'A modern, responsive portfolio website showcasing projects and skills with smooth animations.',
-    technologies: ['Next.js', 'Tailwind CSS', 'TypeScript'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-];
-
 export default function Projects({
-  title = "Featured Projects",
-  projects = defaultProjects,
+  title = projectsData.title,
+  projects = projectsData.projects,
 }: ProjectsProps) {
   return (
     <section

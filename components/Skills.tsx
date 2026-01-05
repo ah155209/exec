@@ -2,6 +2,7 @@
 
 import AnimatedSection from './ui/AnimatedSection';
 import { motion } from 'framer-motion';
+import { skillsData } from '@/config/portfolio';
 
 interface SkillCategory {
   title: string;
@@ -14,62 +15,8 @@ interface SkillsProps {
 }
 
 export default function Skills({
-  title = "Skills & Technologies",
-  skillCategories = [
-    {
-      title: 'Frontend',
-      skills: [
-        'React',
-        'Next.js',
-        'TypeScript',
-        'Tailwind CSS',
-        'JavaScript',
-        'HTML/CSS',
-      ],
-    },
-    {
-      title: 'Backend',
-      skills: [
-        'Node.js',
-        'Express',
-        'REST APIs',
-        'GraphQL',
-        'MongoDB',
-        'PostgreSQL',
-      ],
-    },
-    {
-      title: 'Tools & Others',
-      skills: [
-        'Git',
-        'Docker',
-        'Vercel',
-        'AWS',
-        'Figma',
-        'Linux',
-      ],
-    },
-    {
-      title: 'Programming Languages',
-      skills: [
-        'JavaScript',
-        'TypeScript',
-        'Python',
-        'Java',
-        'C++',
-        'Go',
-      ],
-    },
-    {
-      title: 'Languages',
-      skills: [
-        'English',
-        'Urdu',
-        'Arabic',
-        'Spanish',
-      ],
-    },
-  ],
+  title = skillsData.title,
+  skillCategories = skillsData.categories,
 }: SkillsProps) {
   return (
     <section
@@ -82,7 +29,7 @@ export default function Skills({
             {title}
           </h2>
         </AnimatedSection>
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
           {skillCategories.map((category, index) => (
             <AnimatedSection
               key={index}
