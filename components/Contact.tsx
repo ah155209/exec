@@ -98,17 +98,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-6 bg-gray-50 dark:bg-gray-900"
+      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-black dark:text-white">
-            {contactData.title}
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
+              {contactData.title}
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              {contactData.description}
+            </p>
+          </div>
         </AnimatedSection>
         <div className="grid md:grid-cols-2 gap-12">
           <AnimatedSection delay={0.2} direction="right">
-            <div>
+            <div className="bg-white dark:bg-black rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-800">
             <h3 className="text-2xl font-semibold mb-6 text-black dark:text-white">
               {contactData.heading}
             </h3>
@@ -168,6 +173,7 @@ export default function Contact() {
           </div>
           </AnimatedSection>
           <AnimatedSection delay={0.3} direction="left">
+          <div className="bg-white dark:bg-black rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-800">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
@@ -241,6 +247,7 @@ export default function Contact() {
               </p>
             )}
           </form>
+          </div>
           </AnimatedSection>
         </div>
       </div>

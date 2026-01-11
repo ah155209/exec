@@ -142,9 +142,10 @@ export const contactData = {
 export const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
+  { href: '#expertise', label: 'Expertise' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
-  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#faq', label: 'FAQ' },
   { href: '#calendar', label: 'Calendar' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -164,6 +165,96 @@ export const siteMetadata = {
 // ============================================
 export const testimonialsData = {
   title: "What People Say",
+};
+
+// ============================================
+// Solving Real Problems Section
+// ============================================
+export const solvingProblemsData = {
+  title: "Solving Real Problems",
+  subtitle: "I focus on creating solutions that make a difference",
+  problems: [
+    {
+      icon: "💡",
+      title: "Innovation",
+      description: "Transforming ideas into innovative digital solutions that solve real-world challenges.",
+    },
+    {
+      icon: "⚡",
+      title: "Performance",
+      description: "Building fast, efficient applications that deliver exceptional user experiences.",
+    },
+    {
+      icon: "🔒",
+      title: "Security",
+      description: "Implementing robust security measures to protect user data and privacy.",
+    },
+    {
+      icon: "📱",
+      title: "Accessibility",
+      description: "Creating inclusive designs that work for everyone, everywhere.",
+    },
+  ],
+};
+
+// ============================================
+// Technical Expertise Section
+// ============================================
+export const expertiseData = {
+  title: "Technical Expertise",
+  subtitle: "Deep knowledge across the full stack",
+  expertise: [
+    {
+      category: "Frontend Development",
+      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      description: "Building responsive, interactive user interfaces",
+    },
+    {
+      category: "Backend Development",
+      skills: ["Node.js", "Express", "REST APIs", "GraphQL"],
+      description: "Creating scalable server-side solutions",
+    },
+    {
+      category: "Database & Storage",
+      skills: ["MongoDB", "PostgreSQL", "SQL", "Database Design"],
+      description: "Designing efficient data storage solutions",
+    },
+    {
+      category: "DevOps & Tools",
+      skills: ["Git", "Docker", "AWS", "CI/CD"],
+      description: "Streamlining development and deployment",
+    },
+  ],
+};
+
+// ============================================
+// FAQ Section
+// ============================================
+export const faqData = {
+  title: "Frequently Asked Questions",
+  subtitle: "Everything you need to know",
+  questions: [
+    {
+      question: "What services do you offer?",
+      answer: "I offer full-stack web development services including frontend and backend development, API design, database architecture, and deployment. I work with modern technologies like React, Next.js, Node.js, and MongoDB.",
+    },
+    {
+      question: "How long does a typical project take?",
+      answer: "Project timelines vary based on complexity. A simple website might take 1-2 weeks, while a full-stack application could take 4-8 weeks or more. I'll provide a detailed timeline during our initial consultation.",
+    },
+    {
+      question: "Do you work with clients remotely?",
+      answer: "Yes! I work with clients worldwide and am experienced in remote collaboration. I use modern communication tools to ensure smooth project management and regular updates.",
+    },
+    {
+      question: "What is your development process?",
+      answer: "I follow an agile development process with regular check-ins, iterative development, and continuous feedback. This ensures transparency and allows for adjustments as the project evolves.",
+    },
+    {
+      question: "Can you help with existing projects?",
+      answer: "Absolutely! I can help maintain, update, or refactor existing codebases. Whether it's fixing bugs, adding features, or improving performance, I'm here to help.",
+    },
+  ],
 };
 
 // ============================================

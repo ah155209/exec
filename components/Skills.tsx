@@ -21,7 +21,7 @@ export default function Skills({
   return (
     <section
       id="skills"
-      className="py-20 px-6 bg-gray-50 dark:bg-gray-900"
+      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
     >
       <div className="container mx-auto max-w-6xl">
         <AnimatedSection>
@@ -37,8 +37,8 @@ export default function Skills({
               direction="up"
             >
               <motion.div
-                whileHover={{ y: -5 }}
-                className="bg-white dark:bg-black rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-white dark:bg-black rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all border border-gray-200 dark:border-gray-800"
               >
                 <h3 className="text-2xl font-semibold mb-6 text-black dark:text-white">
                   {category.title}

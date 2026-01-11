@@ -189,7 +189,7 @@ export const apiUtils = {
   validateRequired: (fields: Record<string, unknown>): { isValid: boolean; missingFields: string[] } => {
     const missingFields: string[] = [];
     
-    for (const [key, value] of Object.entries(fields)) {
+    for (const [key, value] of Object.entries(fields) as [string, unknown][]) {
       if (!value || (typeof value === 'string' && value.trim() === '')) {
         missingFields.push(key);
       }
