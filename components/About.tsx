@@ -20,7 +20,7 @@ export default function About({
   return (
     <section
       id="about"
-      className="py-20 px-6 bg-white dark:bg-black"
+      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>

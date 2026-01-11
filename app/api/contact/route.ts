@@ -5,7 +5,6 @@ import {
   errorMessages,
   successMessages,
   statusCodes,
-  validationRules,
   emailTemplates,
   apiUtils,
   envKeys,
