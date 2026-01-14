@@ -38,7 +38,7 @@ export default function Expertise({
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
           {expertise.map((item, index) => (
             <AnimatedSection
               key={index}

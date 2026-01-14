@@ -11,24 +11,30 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      // Close mobile menu when scrolling
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isMobileMenuOpen
+          ? 'bg-white dark:bg-black shadow-sm'
+          : isScrolled
           ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative z-50">
           <Link
             href="#home"
-            className="text-2xl font-bold text-black dark:text-white hover:opacity-80 transition-opacity"
+            className="text-xl sm:text-2xl font-bold text-black dark:text-white hover:opacity-80 transition-opacity"
           >
             {siteMetadata.name}
           </Link>
@@ -72,17 +78,19 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="md:hidden fixed inset-0 top-0 bg-white dark:bg-black z-40 px-6 pt-24 pb-8">
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium text-lg py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </nav>

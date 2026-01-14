@@ -98,31 +98,31 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
+      className="py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
               {contactData.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
               {contactData.description}
             </p>
           </div>
         </AnimatedSection>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <AnimatedSection delay={0.2} direction="right">
-            <div className="bg-white dark:bg-black rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-800">
-            <h3 className="text-2xl font-semibold mb-6 text-black dark:text-white">
+            <div className="bg-white dark:bg-black rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-black dark:text-white">
               {contactData.heading}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
               {contactData.description}
             </p>
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                   <svg
                     className="w-5 h-5 text-blue-600 dark:text-blue-400"
                     fill="none"
@@ -139,17 +139,17 @@ export default function Contact() {
                 </div>
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-words text-sm sm:text-base"
                 >
                   {contactEmail}
                 </a>
               </div>
             </div>
-            <div className="mt-8">
-              <h4 className="text-lg font-semibold mb-4 text-black dark:text-white">
+            <div className="mt-6 sm:mt-8">
+              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-black dark:text-white">
                 Follow Me
               </h4>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3 sm:space-x-4">
                 {socialLinks.length > 0 ? (
                   socialLinks.map((social, index) => (
                     <a
@@ -173,8 +173,8 @@ export default function Contact() {
           </div>
           </AnimatedSection>
           <AnimatedSection delay={0.3} direction="left">
-          <div className="bg-white dark:bg-black rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-800">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-white dark:bg-black rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             <div>
               <label
                 htmlFor="name"

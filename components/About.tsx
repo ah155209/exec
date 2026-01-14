@@ -28,8 +28,8 @@ export default function About({
             {title}
           </h2>
         </AnimatedSection>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <AnimatedSection delay={0.2} direction="right">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <AnimatedSection delay={0.2} direction="right" className="order-2 lg:order-1">
             <div className="space-y-6">
               {paragraphs.map((paragraph, index) => (
                 <motion.p
@@ -45,7 +45,7 @@ export default function About({
               ))}
             </div>
           </AnimatedSection>
-          <AnimatedSection delay={0.3} direction="left">
+          <AnimatedSection delay={0.3} direction="left" className="order-1 lg:order-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 h-64 flex items-center justify-center"

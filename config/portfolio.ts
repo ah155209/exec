@@ -103,25 +103,25 @@ export const projectsData = {
       description:
         'A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard.',
       technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Stripe'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: 'https://github.com/ah155209',
+      // live: 'https://example.com',
     },
     {
       title: 'Task Management App',
       description:
         'A collaborative task management application with real-time updates and team collaboration features.',
       technologies: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: 'https://github.com/ah155209',
+      // live: 'https://example.com',
     },
-    {
-      title: 'Portfolio Website',
-      description:
-        'A modern, responsive portfolio website showcasing projects and skills with smooth animations.',
-      technologies: ['Next.js', 'Tailwind CSS', 'TypeScript'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-    },
+    // {
+    //   title: 'Portfolio Website',
+    //   description:
+    //     'A modern, responsive portfolio website showcasing projects and skills with smooth animations.',
+    //   technologies: ['Next.js', 'Tailwind CSS', 'TypeScript'],
+    //   github: 'https://github.com',
+    //   live: 'https://example.com',
+    // },
   ],
 };
 
