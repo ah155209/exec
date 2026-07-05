@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Testimonial from '@/models/Testimonial';
 import {
@@ -23,21 +23,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: NextRequest) {
-  try {
-    await connectDB();
-    const body = await request.json();
-    const testimonial = await Testimonial.create(body);
-    return NextResponse.json(
-      { success: true, message: successMessages.testimonials.created, data: testimonial },
-      { status: statusCodes.created }
-    );
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : errorMessages.testimonials.createFailed;
-    return NextResponse.json(
-      { success: false, error: errorMessage },
-      { status: statusCodes.badRequest }
-    );
-  }
+// Submissions are disabled while the testimonials section is not live.
+// Before re-enabling: validate the body fields explicitly and require
+// authentication — never pass the raw request body to Testimonial.create.
+export async function POST() {
+  return NextResponse.json(
+    { success: false, error: errorMessages.general.forbidden },
+    { status: statusCodes.forbidden, headers: { Allow: 'GET' } }
+  );
 }
 

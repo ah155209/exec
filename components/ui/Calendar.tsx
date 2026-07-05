@@ -2,7 +2,9 @@
 
 import * as React from 'react';
 import { format, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay } from 'date-fns';
+import { de as deLocale } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 
 export interface CalendarProps {
   selected?: Date;
@@ -50,6 +52,8 @@ function generateRandomAvailableDates(year: number, month: number): Date[] {
 }
 
 export function Calendar({ selected, onSelect, className, availableDates }: CalendarProps) {
+  const { t, locale } = useLanguage();
+  const dateFnsLocale = locale === 'de' ? deLocale : undefined;
   const [currentDate, setCurrentDate] = React.useState(
     selected || new Date()
   );
@@ -122,8 +126,8 @@ export function Calendar({ selected, onSelect, className, availableDates }: Cale
     1
   ).getDay();
 
-  const monthName = format(currentDate, 'MMMM yyyy');
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const monthName = format(currentDate, 'MMMM yyyy', { locale: dateFnsLocale });
+  const days = t.ui.weekdays;
 
   return (
     <div
@@ -136,7 +140,7 @@ export function Calendar({ selected, onSelect, className, availableDates }: Cale
         <button
           onClick={goToPreviousMonth}
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-          aria-label="Previous month"
+          aria-label={t.ui.previousMonth}
         >
           <svg
             className="w-5 h-5"
@@ -158,7 +162,7 @@ export function Calendar({ selected, onSelect, className, availableDates }: Cale
         <button
           onClick={goToNextMonth}
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-          aria-label="Next month"
+          aria-label={t.ui.nextMonth}
         >
           <svg
             className="w-5 h-5"

@@ -1,13 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**', // Allows all HTTPS domains
-      },
-    ],
-  },
-}
+import type { NextConfig } from 'next';
 
-module.exports = nextConfig
+const nextConfig: NextConfig = {
+  // All images are served from /public via static imports, so no remote
+  // image hosts are allowed. Add specific hostnames under
+  // images.remotePatterns if you ever load external images.
+};
+
+export default nextConfig;

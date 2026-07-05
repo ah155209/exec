@@ -4,27 +4,27 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar } from './ui/Calendar';
 import AnimatedSection from './ui/AnimatedSection';
+import SectionHeading from './ui/SectionHeading';
 import { format } from 'date-fns';
-import { calendarData } from '@/config/portfolio';
+import { de as deLocale } from 'date-fns/locale';
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function CalendarSection() {
+  const { t, locale } = useLanguage();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const dateFnsLocale = locale === 'de' ? deLocale : undefined;
 
   return (
     <section
       id="calendar"
-      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
+      className="py-20 px-6 bg-gray-50 dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
-              {calendarData.title}
-          </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              {calendarData.description}
-          </p>
-          </div>
+          <SectionHeading
+            title={t.calendar.title}
+            subtitle={t.calendar.description}
+          />
         </AnimatedSection>
 
         <AnimatedSection delay={0.2} direction="up">
@@ -42,13 +42,13 @@ export default function CalendarSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                  className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 w-full md:w-64 border border-blue-200 dark:border-blue-800"
+                  className="bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 w-full md:w-64 border border-blue-200 dark:border-blue-800"
               >
                 <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">
-                  Selected Date
+                  {t.ui.selectedDate}
                 </h3>
                   <p className="text-gray-700 dark:text-gray-300 font-medium">
-                  {format(selectedDate, 'EEEE, MMMM d, yyyy')}
+                  {format(selectedDate, 'EEEE, MMMM d, yyyy', { locale: dateFnsLocale })}
                 </p>
               </motion.div>
             )}

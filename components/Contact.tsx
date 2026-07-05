@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import AnimatedSection from './ui/AnimatedSection';
-import { contactData } from '@/config/portfolio';
+import SectionHeading from './ui/SectionHeading';
+import { socialLinks as socialConfig } from '@/config/portfolio';
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,12 +58,8 @@ export default function Contact() {
     });
   };
 
-  // Get values from environment variables (with NEXT_PUBLIC_ prefix for client-side access)
-  // Note: These are available at build time and need NEXT_PUBLIC_ prefix for client components
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL || 'your.email@example.com';
-  const githubUrl = process.env.NEXT_PUBLIC_GITHUB_URL || process.env.GITHUB_URL?.trim() || '';
-  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL || process.env.LINKEDIN_URL?.trim() || '';
-  
+  const contactEmail = socialConfig.email;
+
   // Ensure URLs have https:// prefix if they don't already
   const formatUrl = (url: string): string => {
     if (!url) return '';
@@ -70,9 +69,9 @@ export default function Contact() {
     }
     return `https://${trimmed}`;
   };
-  
-  const formattedGithubUrl = formatUrl(githubUrl);
-  const formattedLinkedinUrl = formatUrl(linkedinUrl);
+
+  const formattedGithubUrl = formatUrl(socialConfig.github);
+  const formattedLinkedinUrl = formatUrl(socialConfig.linkedin);
 
   const socialLinks = [
     {
@@ -98,31 +97,27 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
+      className="py-20 px-4 sm:px-6 bg-white dark:bg-black"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
-              {contactData.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
-              {contactData.description}
-            </p>
-          </div>
+          <SectionHeading
+            title={t.contact.title}
+            subtitle={t.contact.description}
+          />
         </AnimatedSection>
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <AnimatedSection delay={0.2} direction="right">
-            <div className="bg-white dark:bg-black rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+            <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800 h-full">
             <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-black dark:text-white">
-              {contactData.heading}
+              {t.contact.heading}
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
-              {contactData.description}
+              {t.contact.description}
             </p>
             <div className="space-y-4">
               <div className="flex items-center space-x-3 sm:space-x-4">
-                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-blue-600 dark:text-blue-400"
                     fill="none"
@@ -139,7 +134,7 @@ export default function Contact() {
                 </div>
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-words text-sm sm:text-base"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors wrap-break-word text-sm sm:text-base"
                 >
                   {contactEmail}
                 </a>
@@ -147,7 +142,7 @@ export default function Contact() {
             </div>
             <div className="mt-6 sm:mt-8">
               <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-black dark:text-white">
-                Follow Me
+                {t.ui.followMe}
               </h4>
               <div className="flex space-x-3 sm:space-x-4">
                 {socialLinks.length > 0 ? (
@@ -165,7 +160,7 @@ export default function Contact() {
                   ))
                 ) : (
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Social links not configured
+                    {t.ui.socialNotConfigured}
                   </p>
                 )}
               </div>
@@ -173,14 +168,14 @@ export default function Contact() {
           </div>
           </AnimatedSection>
           <AnimatedSection delay={0.3} direction="left">
-          <div className="bg-white dark:bg-black rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+          <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200 dark:border-gray-800 h-full">
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             <div>
               <label
                 htmlFor="name"
                 className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
               >
-                Name
+                {t.ui.name}
               </label>
               <input
                 type="text"
@@ -190,7 +185,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black dark:text-white"
-                placeholder="Your Name"
+                placeholder={t.ui.namePlaceholder}
               />
             </div>
             <div>
@@ -198,7 +193,7 @@ export default function Contact() {
                 htmlFor="email"
                 className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
               >
-                Email
+                {t.ui.email}
               </label>
               <input
                 type="email"
@@ -208,7 +203,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black dark:text-white"
-                placeholder="your.email@example.com"
+                placeholder={t.ui.emailPlaceholder}
               />
             </div>
             <div>
@@ -216,7 +211,7 @@ export default function Contact() {
                 htmlFor="message"
                 className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
               >
-                Message
+                {t.ui.message}
               </label>
               <textarea
                 id="message"
@@ -226,7 +221,7 @@ export default function Contact() {
                 required
                 rows={5}
                 className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black dark:text-white resize-none"
-                placeholder="Your Message"
+                placeholder={t.ui.messagePlaceholder}
               />
             </div>
             <button
@@ -234,18 +229,20 @@ export default function Contact() {
               disabled={isSubmitting}
               className="w-full px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? t.ui.sending : t.ui.send}
             </button>
-            {submitStatus === 'success' && (
-              <p className="text-green-600 dark:text-green-400 text-center">
-                Message sent successfully! I&apos;ll get back to you soon.
-              </p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-red-600 dark:text-red-400 text-center">
-                Failed to send message. Please try again or contact me directly via email.
-              </p>
-            )}
+            <div role="status" aria-live="polite">
+              {submitStatus === 'success' && (
+                <p className="text-green-600 dark:text-green-400 text-center">
+                  {t.ui.successMessage}
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-red-600 dark:text-red-400 text-center">
+                  {t.ui.errorMessage}
+                </p>
+              )}
+            </div>
           </form>
           </div>
           </AnimatedSection>
@@ -254,4 +251,3 @@ export default function Contact() {
     </section>
   );
 }
-

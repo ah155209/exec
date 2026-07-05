@@ -102,7 +102,7 @@
 //                   <div className="flex items-center mb-4">
 //                     {renderStars(testimonial.rating)}
 //                   </div>
-//                   <p className="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
+//                   <p className="text-gray-700 dark:text-gray-300 mb-6 grow leading-relaxed">
 //                     &quot;{testimonial.message}&quot;
 //                   </p>
 //                   <div className="flex items-center gap-4">
@@ -118,7 +118,7 @@
 //   />
 //                       </div>
 //                     ) : (
-//                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold">
+//                       <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold">
 //                         {testimonial.name.charAt(0).toUpperCase()}
 //                       </div>
 //                     )}

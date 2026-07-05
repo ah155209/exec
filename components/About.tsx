@@ -1,8 +1,9 @@
 'use client';
 
 import AnimatedSection from './ui/AnimatedSection';
+import SectionHeading from './ui/SectionHeading';
 import { motion } from 'framer-motion';
-import { aboutData } from '@/config/portfolio';
+import { useLanguage } from './providers/LanguageProvider';
 
 interface AboutProps {
   title?: string;
@@ -11,22 +12,23 @@ interface AboutProps {
   experienceLabel?: string;
 }
 
-export default function About({
-  title = aboutData.title,
-  paragraphs = aboutData.paragraphs,
-  experienceYears = aboutData.experienceYears,
-  experienceLabel = aboutData.experienceLabel,
-}: AboutProps) {
+export default function About(props: AboutProps) {
+  const { t } = useLanguage();
+  const {
+    title = t.about.title,
+    paragraphs = t.about.paragraphs,
+    experienceYears = t.about.experienceYears,
+    experienceLabel = t.about.experienceLabel,
+  } = props;
+
   return (
     <section
       id="about"
-      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900"
+      className="py-20 px-6 bg-gray-50 dark:bg-gray-950"
     >
       <div className="container mx-auto max-w-4xl">
         <AnimatedSection>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-black dark:text-white">
-            {title}
-          </h2>
+          <SectionHeading title={title} />
         </AnimatedSection>
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <AnimatedSection delay={0.2} direction="right" className="order-2 lg:order-1">
@@ -47,8 +49,8 @@ export default function About({
           </AnimatedSection>
           <AnimatedSection delay={0.3} direction="left" className="order-1 lg:order-2">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 h-64 flex items-center justify-center"
+              whileHover={{ scale: 1.03 }}
+              className="bg-linear-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 h-64 flex items-center justify-center border border-blue-200/60 dark:border-blue-800/40"
             >
               <div className="text-center">
                 <motion.div
@@ -56,7 +58,7 @@ export default function About({
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-6xl font-bold text-blue-600 dark:text-blue-400 mb-2"
+                  className="text-6xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2"
                 >
                   {experienceYears}
                 </motion.div>

@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { navLinks, siteMetadata } from '@/config/portfolio';
+import Logo from './ui/Logo';
+import ThemeToggle from './ui/ThemeToggle';
+import LanguageToggle from './ui/LanguageToggle';
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function Header() {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -32,16 +36,11 @@ export default function Header() {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between relative z-50">
-          <Link
-            href="#home"
-            className="text-xl sm:text-2xl font-bold text-black dark:text-white hover:opacity-80 transition-opacity"
-          >
-            {siteMetadata.name}
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {t.navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -52,35 +51,44 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-black dark:text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile controls */}
+          <div className="flex md:hidden items-center gap-1">
+            <ThemeToggle />
+            <button
+              className="text-black dark:text-white p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={t.ui.toggleMenu}
+              aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMobileMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden fixed inset-0 top-0 bg-white dark:bg-black z-40 px-6 pt-24 pb-8">
             <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
+              {t.navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -90,6 +98,9 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+              <div className="pt-4 mt-2 border-t border-gray-200 dark:border-gray-800">
+                <LanguageToggle />
+              </div>
             </div>
           </div>
         )}
@@ -97,4 +108,3 @@ export default function Header() {
     </header>
   );
 }
-

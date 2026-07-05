@@ -8,12 +8,30 @@ import {
   emailTemplates,
   apiUtils,
   envKeys,
+  validationRules,
 } from '@/config/api';
+import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
 const resend = new Resend(process.env[envKeys.resendApiKey]);
 
+// Allow a handful of submissions per IP per hour — generous for a human,
+// stops bots from draining the Resend quota.
+const RATE_LIMIT = { limit: 5, windowMs: 60 * 60 * 1000 };
+
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+    const { allowed, retryAfterSeconds } = rateLimit(`contact:${ip}`, RATE_LIMIT);
+    if (!allowed) {
+      return NextResponse.json(
+        { success: false, error: 'Too many requests. Please try again later.' },
+        {
+          status: 429,
+          headers: { 'Retry-After': String(retryAfterSeconds) },
+        }
+      );
+    }
+
     const body = await request.json();
     const { name, email, message } = body;
 
@@ -22,6 +40,20 @@ export async function POST(request: NextRequest) {
     if (!validation.isValid) {
       return NextResponse.json(
         { success: false, error: errorMessages.contact.requiredFields },
+        { status: statusCodes.badRequest }
+      );
+    }
+
+    if (
+      typeof name !== 'string' ||
+      typeof email !== 'string' ||
+      typeof message !== 'string' ||
+      name.length > validationRules.maxLength.name ||
+      email.length > validationRules.maxLength.email ||
+      message.length > validationRules.maxLength.message
+    ) {
+      return NextResponse.json(
+        { success: false, error: errorMessages.general.badRequest },
         { status: statusCodes.badRequest }
       );
     }
@@ -74,10 +106,10 @@ export async function POST(request: NextRequest) {
       { status: statusCodes.ok }
     );
   } catch (error) {
+    // Log the detail server-side but never expose internals to the client
     console.error('Contact API error:', error);
-    const errorMessage = error instanceof Error ? error.message : errorMessages.contact.internalError;
     return NextResponse.json(
-      { success: false, error: errorMessage },
+      { success: false, error: errorMessages.contact.internalError },
       { status: statusCodes.serverError }
     );
   }
