@@ -12,8 +12,6 @@ import {
 } from '@/config/api';
 import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
-const resend = new Resend(process.env[envKeys.resendApiKey]);
-
 // Allow a handful of submissions per IP per hour — generous for a human,
 // stops bots from draining the Resend quota.
 const RATE_LIMIT = { limit: 5, windowMs: 60 * 60 * 1000 };
@@ -82,6 +80,10 @@ export async function POST(request: NextRequest) {
     const safeName = apiUtils.escapeHtml(name);
     const safeEmail = apiUtils.escapeHtml(email);
     const safeMessage = apiUtils.escapeHtml(message);
+
+    // Constructed here (not at module scope) so the route can still be
+    // built/imported when the key isn't set in the current environment.
+    const resend = new Resend(process.env[envKeys.resendApiKey]);
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
